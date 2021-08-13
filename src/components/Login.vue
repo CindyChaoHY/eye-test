@@ -16,18 +16,21 @@
                         md="8"
                       >
                         <v-text-field
+                          v-model="account"
                           name="login"
                           label="帳號"
                           type="text"
                           outlined
                         ></v-text-field>
                         <v-text-field
+                          v-model="passwd"
                           id="password"
                           name="password"
                           label="密碼"
                           type="password"
                           outlined
                         ></v-text-field>
+                        <p v-if="msg" class="red--text">{{ msg }}</p>
                       </v-col>
                     </v-row>
                   </v-form>
@@ -52,21 +55,43 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Login',
   props: {
     source: String,
   },
 
+  data () {
+    return {
+      account: '',
+      passwd: '',
+      msg: ''
+    }
+  },
+
   methods: {
     login() {
-      let auth = true
-
-      if (auth) {
-        this.$router.push('/')
-      } else {
-        console.log('fail')
+      let params = {
+        account: this.account,
+        passwd: this.passwd
       }
+
+      axios.post('/auth', params, {
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
+      })
+      .then(res => {
+        // 登入成功
+        console.log(res.data)
+        sessionStorage.setItem("authenticated", true)
+        this.$router.push('/')
+      })
+      .catch(error => {
+        this.msg = error.response ? error.response.data.message : ''
+      })
     }
   }
 }

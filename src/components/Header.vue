@@ -63,15 +63,15 @@ export default {
   background: #FFD700 !important;
 
   &--btn {
-    width: 45px !important;
+    width: 40px !important;
     height: 60px !important;
-    min-width: 45px !important;
+    min-width: 40px !important;
     background: transparent !important;
     box-shadow: none !important;
     margin: 0px !important;
 
     i {
-      font-size: 35px !important;
+      font-size: 30px !important;
     }
   }
 }
