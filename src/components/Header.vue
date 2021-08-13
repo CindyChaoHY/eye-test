@@ -31,8 +31,7 @@
       </v-btn>
 
       <v-btn
-        icon
-        class="header--link"
+        class="header--btn"
       >
         登出
       </v-btn>
@@ -74,11 +73,6 @@ export default {
     i {
       font-size: 35px !important;
     }
-  }
-
-  &--link {
-    width: 40px !important;
-    margin: 0px !important;
   }
 }
 
