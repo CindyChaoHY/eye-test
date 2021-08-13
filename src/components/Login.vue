@@ -35,7 +35,12 @@
 
                 <v-card-actions>
                   <v-spacer />
-                  <v-btn class="login--btn" to="/">登入</v-btn>
+                  <v-btn
+                    class="login--btn"
+                    @click="login"
+                  >
+                    登入
+                  </v-btn>
                   <v-spacer />
                 </v-card-actions>
               </v-card>
@@ -48,11 +53,23 @@
 
 <script>
 export default {
-   name: 'Login',
-   props: {
-      source: String,
-   },
-};
+  name: 'Login',
+  props: {
+    source: String,
+  },
+
+  methods: {
+    login() {
+      let auth = true
+
+      if (auth) {
+        this.$router.push('/')
+      } else {
+        console.log('fail')
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss">
